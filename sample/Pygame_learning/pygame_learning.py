@@ -6,12 +6,12 @@ from pygame.locals import *
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        # self.surf = pygame.image.load('jet.png').convert()
-        # self.surf.set_colorkey((255, 255, 255), RLEACCEL)
-        # self.rect = self.surf.get_rect(center=(400, 300))
-        self.surf = pygame.Surface((50, 50))
-        self.surf.fill((255, 255, 255))
+        self.surf = pygame.image.load('jet.png')
+        self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.surf.get_rect(center=(400, 300))
+        # self.surf = pygame.Surface((50, 50))
+        # self.surf.fill((255, 255, 255))
+        # self.rect = self.surf.get_rect(center=(400, 300))
 
     def update(self, pressed_keys):
         if pygame.key.get_pressed()[K_UP]:
@@ -91,7 +91,7 @@ while running:
         player.kill()
         running = False
 
-    screen.fill((0, 0, 0))
+    screen.fill((255, 255, 255))
     for entity in all_sprites:
         screen.blit(entity.surf, entity.rect)
     pygame.display.flip()  # 显示出来
