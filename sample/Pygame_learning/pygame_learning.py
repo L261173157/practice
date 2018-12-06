@@ -30,6 +30,8 @@ class Player(pygame.sprite.Sprite):
 
 
 class Enemy(pygame.sprite.Sprite):
+    number = 0
+
     def __init__(self):
         super(Enemy, self).__init__()
         self.surf = pygame.Surface((20, 10))
@@ -41,6 +43,11 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.move_ip(0, self.speed)
         if self.rect.bottom >= 600:
             self.kill()
+            Enemy.number += 1
+
+    @classmethod
+    def num(cls):
+        print('打到了', cls.number)
 
 
 pygame.init()
@@ -49,7 +56,7 @@ screen = pygame.display.set_mode([800, 600])  # 设定一个窗口
 Add_enemy = pygame.USEREVENT+1  # 添加敌人自定义事件
 Enemy_move = pygame.USEREVENT+2  # 敌人移动
 pygame.time.set_timer(Add_enemy, 500)  # 设置敌人出现时间
-pygame.time.set_timer(Enemy_move, 50)  # 设置敌人出现时间
+pygame.time.set_timer(Enemy_move, 100)  # 设置敌人出现时间
 
 
 player = Player()
@@ -77,6 +84,7 @@ while running:
     pressed_keys1 = pygame.key.get_pressed()
     player.update(pressed_keys1)
     if pygame.sprite.spritecollideany(player, enemies):
+        enemy.num()
         player.kill()
         running = False
 
