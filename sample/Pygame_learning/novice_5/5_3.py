@@ -40,3 +40,4 @@ while True:
     pygame.draw.rect(screen, color, (0, 240, 640, 240))
 
     pygame.display.update()
+
